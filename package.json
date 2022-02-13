@@ -1,0 +1,13 @@
+{
+  "name": "dialy_demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "xchen <7362469@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsc src/**/*.ts -w"
+  },
+  "dependencies": {
+    "typescript": "^4.5.5"
+  }
+}
