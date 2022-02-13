@@ -2,14 +2,14 @@
  * @author xchen
  * @description 节流函数
  * @Date 2022-02-13
- * @description 事件被触发后，指定时间内不允许再次触发
+ * @description 事件被触发后，在延迟时间内 仅第一次有效
  */
 
 
 /**
  * 时间戳执行防抖函数
  * @param func 执行函数
- * @param delay 不允许出发的时间
+ * @param delay 延迟时间
  */
 function throttleDemo1(func: Function, delay: number) {
   var timer: number = 0;
@@ -26,8 +26,27 @@ function throttleDemo1(func: Function, delay: number) {
   }
 }
 
-window.addEventListener('resize',throttleDemo1(() => {
-  console.log("loading");
+/**
+ * 定时器版本
+ * @param func 执行函数 
+ * @param delay 延迟时间
+ */
+function throttleDemo2(func: Function, delay: number) {
+  var timer: number = null;
+  return function () {
+    if (!timer) {
+      func.call(this, arguments)
+      timer = setTimeout(() => {
+        timer = null
+      }, delay)
+    } else {
+      console.log("delay not end");
+    }
+  }
+}
+
+window.addEventListener('resize', throttleDemo2((event: UIEvent) => {
+  console.log("loading", event);
 }, 500))
 
-export { }
+export  {}
