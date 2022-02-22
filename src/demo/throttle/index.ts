@@ -32,7 +32,7 @@ function throttleDemo1(func: Function, delay: number) {
  * @param delay 延迟时间
  */
 function throttleDemo2(func: Function, delay: number) {
-  var timer: number = null;
+  var timer: NodeJS.Timeout | number = null;
   return function () {
     if (!timer) {
       func.call(this, arguments)
@@ -49,4 +49,4 @@ window.addEventListener('resize', throttleDemo2((event: UIEvent) => {
   console.log("loading", event);
 }, 500))
 
-export  {}
+export { }

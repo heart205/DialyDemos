@@ -6,7 +6,7 @@
  */
 
 function debounce(func: Function, delay: number) {
-  var timer: number = null;
+  var timer: NodeJS.Timeout = null;
   return function () {
     clearTimeout(timer);
     timer = setTimeout(() => {
