@@ -1,0 +1,35 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 200px;
+  width: 200px;
+  border: 1px solid #ddd;
+  position: relative;
+  .box {
+    height: 100px;
+    width: 100px;
+
+    border: 1px solid #ddd;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+  .unset {
+    top: initial;
+    bottom: 15px;
+  }
+}
+
+//  unset 与 rever不同的demo
+.unset {
+  font-weight: unset;
+}
+
+.revert {
+  font-weight: revert;
+}

@@ -1,5 +1,5 @@
 /**
- * @author xchen
+ * @author heart
  * @description 节流函数
  * @Date 2022-02-13
  * @description 事件被触发后，在延迟时间内 仅第一次有效

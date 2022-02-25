@@ -1,5 +1,5 @@
 /**
- * @author xchen
+ * @author heart
  * @description Canvas给图片添加水印
  * @Date 2022-02-16
  */
