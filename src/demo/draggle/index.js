@@ -12,5 +12,5 @@
 import { draggle, draggleOperation } from './deaggle.js';
 const element = document.querySelector('.box');
 const container = document.querySelector('.contains');
-new draggle(element);
-new draggleOperation(container);
+new draggle().addEvent(element);
+new draggleOperation().addEvent(container);
