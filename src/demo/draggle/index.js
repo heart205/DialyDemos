@@ -10,7 +10,9 @@
  * 拖放事件(用于可以执行放置的区域) dragEnter dragLeave drop dragover
  */
 import { draggle, draggleOperation } from './deaggle.js';
-const element = document.querySelector('.box');
 const container = document.querySelector('.contains');
-new draggle().addEvent(element);
+const elementLi = document.getElementsByClassName('box');
+for (let i in elementLi) {
+    new draggle().addEvent(elementLi[i]);
+}
 new draggleOperation().addEvent(container);
