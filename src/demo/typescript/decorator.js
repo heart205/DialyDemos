@@ -47,6 +47,7 @@ console.log(new Student().age);
  */
 let D = class D {
     nameMethod(message) {
+        console.log('class decorator');
         return message;
     }
 };
@@ -86,4 +87,106 @@ function logParameter(target, propertyKey, index) {
     console.log('logParameter', target); // D.prototype
     console.log(target[propertyKey]); // nameMethod方法
 }
+/**
+ * 装饰器组合
+ * 对于同一个目标可以引用多个装饰器
+ * 装饰器工厂从上到下依次执行，但是只是用于返回函数但不调用函数；
+ * 装饰器函数从下到上依次执行，也就是执行工厂函数返回的函数。
+ * 装饰器工厂会优先执行 然后在原有的位置上返回一个函数 之后装饰器函数依次从下往上执行
+ * TODO: 装饰器的执行顺序：属性>方法参数>方法>类
+ */
+/**
+ * 类装饰器
+ * 传入的参数是当前所修饰类的构造函数  A === A.prototype.constructor a的原型对象的构造函数又指向了这个类
+ * 这里的target 就是 A的constructor 因此类装饰器可以操作类的原型
+ * 类装饰器如果有返回值且返回值是一个函数 则这个函数类似于会重写被所修饰的类的构造器（constructor）
+ */
+function setName(target) {
+    console.log(target);
+    console.log('类装饰器');
+}
+function setAge(target) {
+    console.log('setAge');
+}
+function setAclass(str) {
+    console.log('setAclass');
+    return function (target) {
+        console.log(str);
+    };
+}
+/**
+ *
+ * @param target 装饰静态成员时是类的构造函数
+ * @param key 成员的名字
+ */
+function property(target, key) {
+    console.log('属性装饰器');
+}
+/**
+ * 方法装饰器
+ * @param target 装饰静态成员时是类的构造函数
+ * @param protoKey 成员的名字
+ * @param descriptor 成员的属性描述符 包含了是哪个属性 configurable、writable和enumerable 描述这个属性的可配置性 可写性 和枚举性
+ * writable 为false  属性不可以被编辑
+ * 方法装饰器返回一个值，那么会用这个值作为方法的属性描述符对象
+ * 访问器装饰器也是和方法装饰器一样操作 不允许同时装饰一个成员的 get 和 set 访问器
+ */
+function methodsLog(target, protoKey, descriptor) {
+    console.log('方法装饰器');
+}
+/**
+ *
+ * @param target 当前对象的原型(obj.__proto__)
+ * @param propertyKey 参数的名
+ * @param index 参数数组中的位置 从0开始计时
+ * 参数装饰器的返回值会被忽略
+ * 参数装饰器可以提供信息，给比如给类原型添加了一个新的属性，属性中包含一系列信息，这些信息就被成为「元数据」
+ * 然后就可以使用另外一个装饰器来读取「元数据」（因为最后才执行类装饰器）
+ */
+function paramLog(target, propertyKey, index) {
+    console.log('方法参数装饰器');
+}
+let A = class A {
+    as(st) { }
+};
+__decorate([
+    property,
+    __metadata("design:type", String)
+], A.prototype, "names", void 0);
+__decorate([
+    methodsLog,
+    __param(0, paramLog),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], A.prototype, "as", null);
+A = __decorate([
+    setName,
+    setAge,
+    setAclass('12')
+], A);
+function classDecorator(target) {
+    return class extends target {
+        constructor() {
+            super(...arguments);
+            this.newPropery = '123';
+        }
+    };
+}
+function classDecorators(target) {
+    return function () {
+        console.log('123');
+    };
+}
+let Geeter = class Geeter {
+    constructor(hello) {
+        this.hello = hello;
+        this.property = 'property';
+    }
+};
+Geeter = __decorate([
+    classDecorators,
+    __metadata("design:paramtypes", [String])
+], Geeter);
+console.log(new Geeter('names'));
 export {};

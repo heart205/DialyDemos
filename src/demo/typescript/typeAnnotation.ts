@@ -135,11 +135,15 @@ type pInters = keyof pInter // type pInters = 1 | 'name' | 'age'
 // const aeTan: pInters = 'name'
 // const aeTan: pInters = 'age'
 
+interface onePerson {
+  name: string
+  age: number
+}
 
 type PromiseType<P> = P extends Promise<infer value>
   ? value
-  : P extends person
-  ? person
+  : P extends onePerson
+  ? onePerson
   : never
 
 export {}
