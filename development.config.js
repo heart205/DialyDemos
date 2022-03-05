@@ -13,7 +13,13 @@ module.exports = {
     rules: [{
       test: /\.ts$/,
       use: 'ts-loader'
+    }, {
+      test: /\.less$/,
+      use: ['style-loader', 'css-loader', 'less-loader']
     }]
+  },
+  resolve: {
+    extensions: ['.ts', '.less', '.js'],
   },
   plugins: [new HtmlWebpackPlugin({
     template: path.resolve(__dirname, "./src/demo/canvas/index.html"),

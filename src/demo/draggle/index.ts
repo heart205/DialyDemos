@@ -20,6 +20,11 @@ const elementLi: HTMLCollection = document.getElementsByClassName(
 ) as HTMLCollection
 
 for (let i in elementLi) {
-  new draggle().addEvent(elementLi[i])
+  const dom = new draggle()
+  if (dom && dom.addEvent) dom.addEvent(elementLi[i])
 }
-new draggleOperation().addEvent(container)
+const draggableOptionDom = new draggleOperation()
+
+if (draggableOptionDom && draggableOptionDom.addEvent) {
+  draggableOptionDom.addEvent(container)
+}

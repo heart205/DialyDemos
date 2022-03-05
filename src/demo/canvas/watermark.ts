@@ -3,12 +3,12 @@
  * @description Canvas给图片添加水印
  * @Date 2022-02-16
  */
-import { trimRegExp1 } from '../../lib/tool.js'
+import { trimRegExp1 } from '../../lib/tool'
 // 用canvas先添加图片 然后 获取文字 添加水印
 let canvas: HTMLCanvasElement | null = document.querySelector('#canvas')
 
 const imgUrl =
-  'https://crmuat.sunlordinc.com:10000/fc/file/v6/download/99584eb3-7c85-4878-816e-1efc8f0ebf49.png'
+  'https://xxxx.xxxx.com:10000/fc/file/v6/download/99584eb3-7c85-4878-816e-1efc8f0ebf49.png'
 /**
  * 获取图片地址 加载图片后添加水印
  */

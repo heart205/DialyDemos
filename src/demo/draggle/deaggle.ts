@@ -88,19 +88,20 @@ abstract class AbstractDraggableOperation extends deaggable {
 
 @addEvent
 export class draggle<T> extends AbstractDraggable {
-  static element: Element // 记录当前被拖拽的DOM
+  static element: Element | null // 记录当前被拖拽的DOM
   readonly signParam = 'draggle'
   onDragstart(event: DragEvent): boolean | void {
     // 拖拽开始阻止默认事件将不能被拖拽
     // console.log(event)
     if (!draggle.element) {
       draggle.element = event.target as HTMLDivElement
-      event.dataTransfer.setData(
-        'application/x-bookmar',
-        JSON.stringify({
-          type: 'li',
-        })
-      )
+      if (event.dataTransfer)
+        event.dataTransfer.setData(
+          'application/x-bookmar',
+          JSON.stringify({
+            type: 'li',
+          })
+        )
     }
     // event.preventDefault()
     // console.log('拖拽开始')
@@ -113,8 +114,8 @@ export class draggle<T> extends AbstractDraggable {
   onDragEnd(event: DragEvent): boolean | void {
     // 当拖拽操作结束时触发 (比如松开鼠标按键或敲“Esc”键)
     console.log('拖拽结束')
-    const str: string = draggle.element.className
-    this.replacrClassName(str, draggle.element)
+    const str: string | null = draggle.element && draggle.element.className
+    if (str && draggle.element) this.replacrClassName(str, draggle.element)
     draggle.element = null
     return true
   }
@@ -128,14 +129,15 @@ export class draggle<T> extends AbstractDraggable {
 
 @addEvent
 export class draggleOperation<T> extends AbstractDraggableOperation {
-  addElement: Element // 保存当前正在拖拽需要被添加的元素 如果离开删除元素 如果
+  addElement: Element | null // 保存当前正在拖拽需要被添加的元素 如果离开删除元素 如果
   readonly signParam = 'draggleOperation'
   element: Element // 当前监听拖放的DOM
   onDragEnter(event: DragEvent): boolean | void {
     console.log('拖拽是否进入')
 
     // 当拖拽元素或选中的文本到一个可释放目标时触发(进入监听了拖拽事件的元素)
-    this.addElement = factoryElement('li', {}, draggle.element)
+    if (draggle.element)
+      this.addElement = factoryElement('li', {}, draggle.element)
     return true
   }
   onDragLeave(event: DragEvent): boolean | void {
@@ -162,8 +164,11 @@ export class draggleOperation<T> extends AbstractDraggableOperation {
   onDrop(event: DragEvent): boolean | void {
     // 当元素或选中的文本在可释放目标上被释放时触发
     // 将元素添加到dom中
+
     console.log('被释放的时候出发')
-    console.log(event.dataTransfer.getData('application/x-bookmar'))
+    console.log(
+      event.dataTransfer && event.dataTransfer.getData('application/x-bookmar')
+    )
     if (this.addElement) {
       this.element.appendChild(this.addElement)
       this.addElement = null
