@@ -4,6 +4,11 @@
  * @Date 2022-02-25
  * 待设计：吸附的过程中添加吸附的参考线
  * 以及 设计一个draggleOperation的一个dom元素 增加样式占位等
+ * 所有的拖放过程中都传递了一个数据的传递对象dataTransfer 用于在源数据和目标数据直接进行传递
+ * DataTransfer 对象用于保存拖动并放下（drag and drop）过程中的数据
+ * @see: https://developer.mozilla.org/zh-CN/docs/Web/API/DataTransfer
+ * @see: https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations
+ * 应该利用dataTransFer进行数据传输 左边传入json数据 右边对json数据进行解析 如果没有数据 则自身的元素移动
  */
 
 type eventType = keyof typeof draggleEvent
@@ -22,7 +27,7 @@ enum draggableEnum {
   onDrop = 'drop',
 }
 abstract class deaggable {
-  readonly signParam: string
+  signParam: string
   addEvent?<T>(element: T): void
   static activate_className = 'draggable_activate'
   replacrClassName(str: string, e: Element) {
@@ -90,6 +95,12 @@ export class draggle<T> extends AbstractDraggable {
     // console.log(event)
     if (!draggle.element) {
       draggle.element = event.target as HTMLDivElement
+      event.dataTransfer.setData(
+        'application/x-bookmar',
+        JSON.stringify({
+          type: 'li',
+        })
+      )
     }
     // event.preventDefault()
     // console.log('拖拽开始')
@@ -122,6 +133,7 @@ export class draggleOperation<T> extends AbstractDraggableOperation {
   element: Element // 当前监听拖放的DOM
   onDragEnter(event: DragEvent): boolean | void {
     console.log('拖拽是否进入')
+
     // 当拖拽元素或选中的文本到一个可释放目标时触发(进入监听了拖拽事件的元素)
     this.addElement = factoryElement('li', {}, draggle.element)
     return true
@@ -144,14 +156,14 @@ export class draggleOperation<T> extends AbstractDraggableOperation {
       // console.log(draggle.element)
     }
 
-    return true
+    return false
     // console.log('拖拽是否放到有效的目标上')
   }
   onDrop(event: DragEvent): boolean | void {
     // 当元素或选中的文本在可释放目标上被释放时触发
     // 将元素添加到dom中
     console.log('被释放的时候出发')
-    console.log(this.addElement)
+    console.log(event.dataTransfer.getData('application/x-bookmar'))
     if (this.addElement) {
       this.element.appendChild(this.addElement)
       this.addElement = null
@@ -175,6 +187,7 @@ export function factoryElement(
   if (document) {
     const el = document.createElement(str, options)
     el.className = 'draggable_moving'
+    el.setAttribute('draggable', 'true')
     if (e) {
       const context = document.createTextNode(e.innerHTML)
       el.appendChild(context)

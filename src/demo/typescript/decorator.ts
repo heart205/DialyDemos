@@ -20,7 +20,7 @@ function setProps(target: Function) {
  */
 @setProps
 class Person implements person {
-  names: string
+  names: string = ''
 }
 
 console.log(new Person().names)
@@ -34,8 +34,8 @@ function setProp(age: number) {
 
 @setProp(16)
 class Student implements person {
-  names: string
-  age: number
+  names: string = ''
+  age: number = 0
 }
 
 console.log(new Student().age)
@@ -51,7 +51,7 @@ type a = typeof Student // typeof一个类 {prototype,Symblo,apply,arguments,bin
 @classLog
 class D implements person {
   @logProperty
-  names: string
+  names: string = ''
   @methodLog
   nameMethod(@logParameter message: string) {
     console.log('class decorator')
@@ -162,7 +162,7 @@ function paramLog(target: Object, propertyKey: string, index: number) {
 @setAclass('12')
 class A {
   @property
-  names: string
+  names: string = ''
   @methodsLog
   as(@paramLog st: string) {}
 }

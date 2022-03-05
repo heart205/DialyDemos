@@ -12,8 +12,12 @@
  */
 
 import { draggle, draggleOperation } from './deaggle.js'
-const container: HTMLDivElement = document.querySelector('.contains')
-const elementLi: HTMLCollection = document.getElementsByClassName('box')
+const container: HTMLDivElement = document.querySelector(
+  '.contains'
+) as HTMLDivElement
+const elementLi: HTMLCollection = document.getElementsByClassName(
+  'box'
+) as HTMLCollection
 
 for (let i in elementLi) {
   new draggle().addEvent(elementLi[i])

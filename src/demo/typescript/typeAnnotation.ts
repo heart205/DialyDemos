@@ -24,7 +24,7 @@ person = {
  * 联合类型
  */
 type format = number | string
-function formatCommandLine<T extends format>(command: T): T {
+function formatCommandLine<T extends format>(command: T): T | null {
   // ...操作
   if (typeof command === 'string') {
     return command
@@ -117,7 +117,7 @@ function useKey<T, K extends keyof T>(o: T, k: K) {
 
 // TODO:4.对类和接口使用
 class perso {
-  name: string;
+  name: string = '';
   [1]: number
 }
 
@@ -146,4 +146,6 @@ type PromiseType<P> = P extends Promise<infer value>
   ? onePerson
   : never
 
+// 判断setTimeout的类型
+type ps = ReturnType<typeof setTimeout>
 export {}
