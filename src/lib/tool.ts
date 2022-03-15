@@ -9,7 +9,7 @@ export function trimRegExp1(str: string) {
 }
 
 /**
- * month day 前置加0操作
+ * month day 前置加0操作 用于 月份 还有 日期 前置添加0的操作
  * @param str
  * @returns
  */
