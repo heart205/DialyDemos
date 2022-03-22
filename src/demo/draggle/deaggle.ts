@@ -51,22 +51,14 @@ function addEvent(target: Function) {
     if (this.signParam === 'draggle') {
       for (let i in draggleEvent) {
         if (element instanceof Element) {
-          element.addEventListener(
-            draggleEvent[i as eventType],
-            this[i as eventType],
-            false
-          )
+          element.addEventListener(draggleEvent[i as eventType], this[i as eventType], false)
         }
       }
     } else if (this.signParam === 'draggleOperation') {
       for (let i in draggableEnum) {
         if (element instanceof Element) {
           this.element = element // 存放可以操作拖拽的DOM
-          element.addEventListener(
-            draggableEnum[i as opeationType],
-            this[i as opeationType],
-            false
-          )
+          element.addEventListener(draggableEnum[i as opeationType], this[i as opeationType], false)
         }
       }
     }
@@ -136,8 +128,7 @@ export class draggleOperation<T> extends AbstractDraggableOperation {
     console.log('拖拽是否进入')
 
     // 当拖拽元素或选中的文本到一个可释放目标时触发(进入监听了拖拽事件的元素)
-    if (draggle.element)
-      this.addElement = factoryElement('li', {}, draggle.element)
+    if (draggle.element) this.addElement = factoryElement('li', {}, draggle.element)
     return true
   }
   onDragLeave(event: DragEvent): boolean | void {
@@ -166,9 +157,7 @@ export class draggleOperation<T> extends AbstractDraggableOperation {
     // 将元素添加到dom中
 
     console.log('被释放的时候出发')
-    console.log(
-      event.dataTransfer && event.dataTransfer.getData('application/x-bookmar')
-    )
+    console.log(event.dataTransfer && event.dataTransfer.getData('application/x-bookmar'))
     if (this.addElement) {
       this.element.appendChild(this.addElement)
       this.addElement = null
@@ -184,11 +173,7 @@ export class draggleOperation<T> extends AbstractDraggableOperation {
   }
 }
 
-export function factoryElement(
-  str: p,
-  options: ElementCreationOptions,
-  e?: Element
-) {
+export function factoryElement(str: p, options: ElementCreationOptions, e?: Element) {
   if (document) {
     const el = document.createElement(str, options)
     el.className = 'draggable_moving'

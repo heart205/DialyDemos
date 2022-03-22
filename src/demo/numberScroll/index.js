@@ -11,11 +11,18 @@ var timer = null;
  * @param endVal 结束值
  * @param e
  */
-function changeNumber(endVal, e, timer) {
+function changeNumber(endVal, e, timer, decimals) {
     var val = Number.parseFloat(e.innerHTML) || 0;
     var dialyTime = 3;
     if (e instanceof HTMLDivElement) {
         e.innerHTML = val + '';
+    }
+    if (!decimals) {
+        var reg = /\.(\d.*)/;
+        var match = (endVal + '').match(reg);
+        if (match) {
+            decimals = match[1].length;
+        }
     }
     if (!timer) {
         // 10s 为 setInterval的数字
@@ -25,8 +32,8 @@ function changeNumber(endVal, e, timer) {
     var differenceValue = endVal - val;
     var diffSecond = differenceValue / timer;
     // 这里为了防止精度丢失
-    diffSecond = Number.parseInt(diffSecond + '');
-    interValNumberScroll(val, endVal, diffSecond, e);
+    diffSecond = Number.parseFloat(diffSecond + '');
+    interValNumberScroll(val, endVal, diffSecond, e, decimals);
 }
 /**
  * @param val 开始值
@@ -34,15 +41,24 @@ function changeNumber(endVal, e, timer) {
  * @param diffSecond 差值
  * @param box element 元素
  */
-function interValNumberScroll(val, endVal, diffSecond, box) {
+function interValNumberScroll(val, endVal, diffSecond, box, decimals) {
     timer = setInterval(function () {
         if (val >= endVal) {
-            box.innerHTML = endVal + '';
+            if (decimals) {
+                box.innerHTML = endVal.toFixed(decimals);
+            }
+            else
+                box.innerHTML = endVal + '';
             if (timer)
                 clearInterval(timer);
         }
         else {
-            box.innerHTML = val + diffSecond + '';
+            if (decimals) {
+                box.innerHTML = (val + diffSecond).toFixed(decimals);
+            }
+            else {
+                box.innerHTML = val + diffSecond + '';
+            }
             val += diffSecond;
         }
     }, 10);
@@ -58,5 +74,5 @@ function initValue(val, box) {
 }
 if (box) {
     initValue(0, box);
-    changeNumber(20000, box);
+    changeNumber(20000.123, box);
 }

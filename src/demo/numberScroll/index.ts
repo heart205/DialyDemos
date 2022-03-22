@@ -13,22 +13,31 @@ let timer: timerType<typeof setInterval | null> = null
  * @param endVal 结束值
  * @param e
  */
-function changeNumber(endVal: number, e: Element, timer?: number) {
+function changeNumber(endVal: number, e: Element, timer?: number, decimals?: number) {
   const val = Number.parseFloat(e.innerHTML) || 0
-  const dialyTime = 3;
+  const dialyTime = 3
   if (e instanceof HTMLDivElement) {
     e.innerHTML = val + ''
   }
+  if (!decimals) {
+    const reg = /\.(\d.*)/
+    const match = (endVal + '').match(reg)
+    if (match) {
+      decimals = match[1].length
+    }
+  }
+
   if (!timer) {
     // 10s 为 setInterval的数字
     timer = Math.cbrt(endVal - val) * dialyTime
   }
+  // TODO: 尽量以60s的时间完成
   // 计算差异 并且以多少s的时间完成这个差异
   const differenceValue = endVal - val
   let diffSecond: number = differenceValue / timer
   // 这里为了防止精度丢失
-  diffSecond = Number.parseInt(diffSecond + '')
-  interValNumberScroll(val, endVal, diffSecond, e)
+  diffSecond = Number.parseFloat(diffSecond + '')
+  interValNumberScroll(val, endVal, diffSecond, e, decimals)
 }
 /**
  * @param val 开始值
@@ -36,18 +45,19 @@ function changeNumber(endVal: number, e: Element, timer?: number) {
  * @param diffSecond 差值
  * @param box element 元素
  */
-function interValNumberScroll<T extends Element>(
-  val: number,
-  endVal: number,
-  diffSecond: number,
-  box: T
-) {
+function interValNumberScroll<T extends Element>(val: number, endVal: number, diffSecond: number, box: T, decimals?: number) {
   timer = setInterval(() => {
     if (val >= endVal) {
-      box.innerHTML = endVal + ''
+      if (decimals) {
+        box.innerHTML = endVal.toFixed(decimals)
+      } else box.innerHTML = endVal + ''
       if (timer) clearInterval(timer)
     } else {
-      box.innerHTML = val + diffSecond + ''
+      if (decimals) {
+        box.innerHTML = (val + diffSecond).toFixed(decimals)
+      } else {
+        box.innerHTML = val + diffSecond + ''
+      }
       val += diffSecond
     }
   }, 10)
@@ -63,5 +73,5 @@ function initValue(val: number, box: Element) {
 
 if (box) {
   initValue(0, box)
-  changeNumber(20000, box)
+  changeNumber(20000.123, box)
 }

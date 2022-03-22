@@ -41,7 +41,7 @@ type ParseQueryString<T extends string> =
         [K in key]: value
       }
     : {}
-
+// TODO: 方法在 typescript中的types_n.ts 中
 type param = ParseQueryString<'name=1&age=2'>
 
 const t: param = {
