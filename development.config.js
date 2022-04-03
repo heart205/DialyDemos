@@ -21,11 +21,18 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.less', '.js'],
   },
+  // 多数组打包
   plugins: [new HtmlWebpackPlugin({
     template: path.resolve(__dirname, "./src/demo/canvas/index.html"),
     filename: "main.html",
     chunks: ['canvas']
-  })],
+  }),
+  new HtmlWebpackPlugin({ 
+    template: path.resolve(__dirname, "./src/demo/app/index.html"),
+    filename: "app.html",
+    chunks:['app']
+  })
+],
   devServer: {
     port: 3002,
     host: '0.0.0.0',
