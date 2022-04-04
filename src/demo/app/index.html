@@ -8,15 +8,30 @@
   <title>Document</title>
   <style>
     .app {
-      width: 400px;
-      height: 5px;
-      background-color: red;
+      width: 100px;
+      height: 100px;
+      border: 30px solid;
+      /*50% 50% 切的四个角都会有颜色 但是 中间切片都为0所以为白色*/
+      border-image: url('https://mdn.mozillademos.org/files/4127/border.png') 50% 50%;
+    }
+    .border-image {
+      width: 100px;
+      height: 40px;
+      border: 2px solid;
+      color: #fff;
+      border-image: linear-gradient(to right ,transparent, #415eff, transparent) 50% 10%;
+      background: linear-gradient(to right, transparent 2%, #415eff, transparent 98%);
+      text-align:center;
+      line-height: 40px;
     }
   </style>
 </head>
 
 <body>
-  <div class="app">
+  <div class="app"></div>
+  <!-- 实现边框问题 -->
+  <div class="border-image">
+    总人数
   </div>
 </body>
 
