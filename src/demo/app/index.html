@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+  }
+
+  .container {
+    width: 220px;
+    height: 220px;
+    margin: auto;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    position: relative;
+    background-color: skyblue;
+  }
+
+  .container::before {
+    content: '';
+    width: 360px;
+    height: 360px;
+    position: absolute;
+    bottom: 20px;
+    left: calc(calc(360px - 220px) / -2);
+    background-color: #fff;
+    /* box-shadow: 0px 0px 10px #ddd; */
+    /* 使用opacity控制颜色 */
+    opacity: .5;
+    border-radius: 40%;
+    animation: rotate 10s linear 2s infinite;
+  }
+
+  .container::before {
+    content: '';
+    width: 360px;
+    height: 360px;
+    position: absolute;
+    bottom: 20px;
+    left: calc(calc(360px - 220px) / -2);
+    background-color: #fff;
+    /* box-shadow: 0px 0px 10px #ddd; */
+    /* 使用opacity控制颜色 */
+    opacity: .4;
+    border-radius: 40%;
+    animation: rotate 10s linear 1.5s infinite;
+  }
+
+  .container::after {
+    content: '';
+    width: 360px;
+    height: 360px;
+    position: absolute;
+    bottom: 20px;
+    left: calc(calc(360px - 220px) / -2);
+    background-color: #fff;
+    /* box-shadow: 0px 0px 10px #ddd; */
+    border-radius: 40%;
+    animation: rotate 10s linear infinite;
+  }
+</style>
+
+<body>
+  <div class="container"></div>
+</body>
+
+</html>
