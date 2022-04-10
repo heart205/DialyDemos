@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --process-bgc: rgb(245, 245, 245);
+  --process-1:rgb(117, 182, 224);
+  --process-height:20px;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.container {
+  margin: auto;
+  width: 200px;
+  height: var(--process-height);
+  background-color: var(--process-bgc);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+.process {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  background: repeating-linear-gradient(45deg, var(--process-1), var(--process-1) 25%, transparent 25%, transparent 50%, var(--process-1) 50%, var(--process-1) 75%, transparent 75%, transparent);
+  /* background-size 控制背景的尺寸 */
+  background-size: var(--process-height) 100%;
+  animation: translate-process 1s linear infinite;
+}
+@keyframes translate-process {
+  0% {
+    background-position: var(--process-height), 0;
+  }
+  100% {
+    background-position: 0, 0;
+  }
+}
