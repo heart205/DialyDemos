@@ -25,7 +25,7 @@ module.exports = {
   plugins: [new HtmlWebpackPlugin({
     template: path.resolve(__dirname, "./src/demo/canvas/index.html"),
     filename: "main.html",
-    chunks: ['canvas']
+    chunks: ['canvas'] // 通过chunks属性来指定对应页面的输出模块，对应这entry模块名
   }),
   new HtmlWebpackPlugin({ 
     template: path.resolve(__dirname, "./src/demo/app/index.html"),
