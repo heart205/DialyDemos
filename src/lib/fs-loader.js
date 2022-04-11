@@ -3,6 +3,7 @@ exports.__esModule = true;
 exports.getEntryAsync = exports.getEntry = void 0;
 var fs = require('fs');
 var path = require('path');
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
 var isFile = require('./fsTool').isFile;
 var isAppointFile = require('./fsTool').isAppointFile;
 var getFilesName = require('./fsTool').getFilesName;
@@ -74,7 +75,7 @@ function getEntryAsync(p) {
 }
 exports.getEntryAsync = getEntryAsync;
 getEntryAsync('./src/demo');
-console.log(htmlTemplateAttribute);
 module.exports = {
-    entry: entry
+    entry: entry,
+    htmlTemplateAttribute: htmlTemplateAttribute
 };

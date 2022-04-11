@@ -3,7 +3,7 @@
  * @description 获取文件夹下的文件名
  * @Date 2022-04-11
  */
-import { Dirent } from 'fs'
+import type { Dirent } from 'fs'
 const fs = require('fs')
 const path = require('path')
 // const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -79,4 +79,5 @@ export function getEntryAsync(p: string) {
 getEntryAsync('./src/demo')
 module.exports = {
   entry,
+  htmlTemplateAttribute,
 }
