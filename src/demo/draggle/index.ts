@@ -11,7 +11,7 @@
  * 拖放事件(用于可以执行放置的区域) dragEnter dragLeave drop dragover
  */
 
-import { draggle, draggleOperation } from './deaggle.js'
+import { draggle, draggleOperation } from './deaggle'
 const container: HTMLDivElement = document.querySelector(
   '.contains'
 ) as HTMLDivElement

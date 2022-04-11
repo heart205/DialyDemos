@@ -5,10 +5,9 @@
  */
 import { trimRegExp1 } from '../../lib/tool'
 // 用canvas先添加图片 然后 获取文字 添加水印
-let canvas: HTMLCanvasElement | null = document.querySelector('#canvas')
 
-const imgUrl =
-  'https://xxxx.xxxx.com:10000/fc/file/v6/download/99584eb3-7c85-4878-816e-1efc8f0ebf49.png'
+let canvas: HTMLCanvasElement | null = document && document.querySelector('#canvas')
+const imgUrl = 'https://github-readme-stats.vercel.app/api/top-langs/?username=heart205&layout=compact&theme=buefy&hide_border=true'
 /**
  * 获取图片地址 加载图片后添加水印
  */
@@ -23,7 +22,7 @@ function getUrlToCanvas(url: string, text: string) {
 
 /**
  * @description 绘画图片
- * @param
+ * @param 字体应该要跟图片占比有关
  */
 function ImageToCanvas(img: HTMLImageElement, text: string) {
   const fontSize = 24 + 'px'
@@ -63,6 +62,4 @@ function addWaterMark(text: string) {
   getUrlToCanvas(imgUrl, text)
 }
 
-addWaterMark(
-  'React 16 依赖集合类型 Map 和 Set 。如果你要支持无法原生提供这些能力（例如 IE < 11）或实现不规范（例如 IE 11）的旧浏览器与设备，考虑在你的应用库中包含一个全局的 polyfill ，例如 core-js。'
-)
+addWaterMark("添加水印")
