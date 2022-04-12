@@ -73,6 +73,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.less', '.js','.css'],
   },
+  
   // 多数组打包
   plugins: htmlTemplate.map(val => {
     return new HtmlWebpackPlugin(val)
