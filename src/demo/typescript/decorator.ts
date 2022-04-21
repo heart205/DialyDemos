@@ -164,10 +164,10 @@ class A {
   @property
   names: string = ''
   @methodsLog
-  as(@paramLog st: string) {}
+  as(@paramLog st: string) { }
 }
 
-function classDecorator<T extends { new (...args: any[]): {} }>(target: T) {
+function classDecorator<T extends { new(...args: any[]): {} }>(target: T) {
   return class extends target {
     newPropery = '123'
   }
@@ -181,9 +181,11 @@ function classDecorators(target: any): any {
 @classDecorators
 class Geeter {
   property = 'property'
-  constructor(public hello: string) {}
+  constructor(public hello: string) { }
 }
 
 console.log(new Geeter('names'))
 
-export {}
+// export {}
+
+export { }

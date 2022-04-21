@@ -1,0 +1,21 @@
+@len: 25px;
+.progress {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  //角向渐变
+  background: conic-gradient(#ffcdb2 0, #ffcdb2 25%, #b5838d 25%, #b5838d);
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    width: calc(~'100% - @{len}');
+    height: calc(~'100% - @{len}');
+    border-radius: inherit;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+  }
+}
