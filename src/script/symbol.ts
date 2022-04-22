@@ -91,6 +91,18 @@ set[Symbol.isConcatSpreadable] = true;
 console.log(fooArr.concat(set));
 
 /**
+ * Symbol.replace
+ */
+
+class replaceClass {
+  static [Symbol.replace](target, replaceTarget) {
+    return target.split("foo").join(replaceTarget);
+  }
+}
+
+console.log("barfooddy".replace(replaceClass, "bzz")); // barbzzddy
+
+/**
  * Symbol.iterator
  * 返回的得是一个Generator的对象 不然 for of 会报错
  */
