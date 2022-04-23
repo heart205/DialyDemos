@@ -6,20 +6,20 @@
 
 // Object.defineProperties() 方法直接在一个对象上定义新的属性或修改现有属性，并返回该对象
 
-const obj = {}
+const obj = {};
 
 Object.defineProperties(obj, {
   prop: {
     value: 'value',
     writable: true,
-    enumerable:true
+    enumerable: true,
   },
   detail: {
-    value: "detail",
+    value: 'detail',
     writable: true,
-    enumerable:true
-  }
-})
+    enumerable: true,
+  },
+});
 
 console.log(obj);
 

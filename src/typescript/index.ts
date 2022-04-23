@@ -16,7 +16,7 @@ class Student extends Person {
   age: number
 }
 
-// keyof Studen 相当于 是 Student的联合类型 'name' | 'n' | 'age'
+// keyof Student 相当于 是 Student的联合类型 'name' | 'n' | 'age'
 function test<T extends Person, U extends keyof Student>(num: T, key: U) {
   console.log(num)
 }
@@ -31,7 +31,7 @@ test<Student, 'name' | 'n' | 'age'>(new Student(), 'age')
 
 // 相当于了 Person的联合类型
 const num: keyof Person = 'name'
-
+console.log(num)
 class A {
   name: string
 }

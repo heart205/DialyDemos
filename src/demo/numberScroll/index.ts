@@ -45,7 +45,13 @@ function changeNumber(endVal: number, e: Element, timer?: number, decimals?: num
  * @param diffSecond 差值
  * @param box element 元素
  */
-function interValNumberScroll<T extends Element>(val: number, endVal: number, diffSecond: number, box: T, decimals?: number) {
+function interValNumberScroll<T extends Element>(
+  val: number,
+  endVal: number,
+  diffSecond: number,
+  box: T,
+  decimals?: number
+) {
   timer = setInterval(() => {
     if (val >= endVal) {
       if (decimals) {

@@ -10,14 +10,14 @@
  * @param func 执行函数
  * @param delay 延迟时间
  */
-function throttleDemo1(func: Function, delay: number) {
-  var timer: number = 0
+function throttleDemo1(func: () => void, delay: number) {
+  let timer = 0
   return function () {
-    var now: number = new Date().getTime()
+    const now: number = new Date().getTime()
     // 在delay时间内不会出发第二次
     if (now >= timer + delay) {
       console.log(arguments)
-      func.call(this, arguments)
+      func()
       timer = now
     } else {
       console.log('delay not end')
@@ -31,11 +31,11 @@ function throttleDemo1(func: Function, delay: number) {
  * @param delay 延迟时间
  */
 type timOut<T> = T extends (...args: any[]) => infer r ? r : null
-function throttleDemo2(func: Function, delay: number) {
-  var timer: timOut<typeof setTimeout | null> = null
+function throttleDemo2(func: () => void, delay: number) {
+  let timer: timOut<typeof setTimeout | null> = null
   return function () {
     if (!timer) {
-      func.call(this, arguments)
+      func()
       timer = setTimeout(() => {
         timer = null
       }, delay)
@@ -45,11 +45,14 @@ function throttleDemo2(func: Function, delay: number) {
   }
 }
 
-window.addEventListener(
-  'resize',
-  throttleDemo2((event: UIEvent) => {
-    console.log('loading', event)
+window.addEventListener('resize', (event: UIEvent) => {
+  console.log(event)
+  throttleDemo2(() => {
+    console.log('throttleDemo2')
   }, 500)
-)
+  throttleDemo1(() => {
+    console.log('throttleDemo1')
+  }, 500)
+})
 
 export {}
