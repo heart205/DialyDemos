@@ -10,14 +10,16 @@
  * @param func 执行函数
  * @param delay 延迟时间
  */
-function throttleDemo1(func: () => void, delay: number) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function throttleDemo1(func: (...args: any) => void, delay: number) {
   let timer = 0
   return function () {
     const now: number = new Date().getTime()
     // 在delay时间内不会出发第二次
+    const arg = [...arguments]
     if (now >= timer + delay) {
       console.log(arguments)
-      func()
+      func.apply(this, arg)
       timer = now
     } else {
       console.log('delay not end')
@@ -31,11 +33,12 @@ function throttleDemo1(func: () => void, delay: number) {
  * @param delay 延迟时间
  */
 type timOut<T> = T extends (...args: any[]) => infer r ? r : null
-function throttleDemo2(func: () => void, delay: number) {
+function throttleDemo2(func: (...args: any) => void, delay: number) {
   let timer: timOut<typeof setTimeout | null> = null
   return function () {
+    const arg = [...arguments]
     if (!timer) {
-      func()
+      func.apply(this, arg)
       timer = setTimeout(() => {
         timer = null
       }, delay)
@@ -45,14 +48,13 @@ function throttleDemo2(func: () => void, delay: number) {
   }
 }
 
-window.addEventListener('resize', (event: UIEvent) => {
-  console.log(event)
-  throttleDemo2(() => {
-    console.log('throttleDemo2')
-  }, 500)
-  throttleDemo1(() => {
-    console.log('throttleDemo1')
-  }, 500)
-})
+window.addEventListener(
+  'resize',
+  throttleDemo2((event) => {
+    console.log(event)
+    console.log('delay is end')
+  }, 3000),
+  false
+)
 
 export {}

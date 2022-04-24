@@ -18,5 +18,6 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['error'],
     '@typescript-eslint/no-explicit-any': 0,
     'prettier/prettier': 'error', // 被prettier标记的地方抛出错误
+    '@typescript-eslint/no-var-requires': 'off', // 关闭对文件导入方式的检查
   },
 }

@@ -4,8 +4,8 @@
  * @returns boolean
  */
 function isFile(str) {
-    var reg = /.*?\..*$/g;
-    return reg.test(str);
+  var reg = /.*?\..*$/g
+  return reg.test(str)
 }
 /**
  * 是否为指定文件
@@ -14,8 +14,8 @@ function isFile(str) {
  * @returns boolean
  */
 function isAppointFile(str, options) {
-    var reg = new RegExp(".*?.".concat(options, "$"), 'g');
-    return reg.test(str);
+  var reg = new RegExp('.*?.'.concat(options, '$'), 'g')
+  return reg.test(str)
 }
 /**
  * 获取文件名
@@ -23,14 +23,14 @@ function isAppointFile(str, options) {
  * @returns
  */
 function getFilesName(str) {
-    var reg = /\/?(.*)\..*$/g;
-    if (reg.test(str)) {
-        return RegExp.$1;
-    }
-    return null;
+  var reg = /\/?(.*)\..*$/g
+  if (reg.test(str)) {
+    return RegExp.$1
+  }
+  return null
 }
 module.exports = {
-    isAppointFile: isAppointFile,
-    isFile: isFile,
-    getFilesName: getFilesName
-};
+  isAppointFile: isAppointFile,
+  isFile: isFile,
+  getFilesName: getFilesName,
+}

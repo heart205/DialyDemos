@@ -15,7 +15,7 @@ function isFile(str: string): boolean {
  * @returns boolean
  */
 function isAppointFile(str: string, options: string): boolean {
-  const reg = new RegExp(`.*?\.${options}$`, 'g')
+  const reg = new RegExp(`.*?\\.${options}$`, 'g')
   return reg.test(str)
 }
 

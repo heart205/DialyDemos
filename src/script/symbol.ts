@@ -4,34 +4,34 @@
  * @Date 2022-04-21
  */
 
-const fooSymbol: any = Symbol.for("foo");
+const fooSymbol: any = Symbol.for('foo')
 
-const barSymbol: any = Symbol.for("foo");
+const barSymbol: any = Symbol.for('foo')
 
 // true
-console.log(fooSymbol === barSymbol);
+console.log(fooSymbol === barSymbol)
 
-const localSymbol: any = Symbol("foo");
-console.log(localSymbol);
+const localSymbol: any = Symbol('foo')
+console.log(localSymbol)
 
-const globalSymbol: any = Symbol.for("foo");
-console.log(globalSymbol);
+const globalSymbol: any = Symbol.for('foo')
+console.log(globalSymbol)
 
 // false
-console.log(localSymbol === globalSymbol);
+console.log(localSymbol === globalSymbol)
 
 /**
  * @description keyFor 获取符号的字符串键
  */
 
 // foo
-console.log(Symbol.keyFor(fooSymbol));
+console.log(Symbol.keyFor(fooSymbol))
 
-const undefinedSymbol = Symbol.for();
-console.log(undefinedSymbol);
+const undefinedSymbol = Symbol.for()
+console.log(undefinedSymbol)
 
 // undefined
-console.log(Symbol.keyFor(undefinedSymbol));
+console.log(Symbol.keyFor(undefinedSymbol))
 
 /**
  * @description hasInstance
@@ -40,20 +40,21 @@ console.log(Symbol.keyFor(undefinedSymbol));
 
 class Foo {
   static [Symbol.hasInstance](foo: any) {
-    return false;
+    console.log(foo)
+    return false
   }
 }
 
-console.log(Foo.__proto__);
+console.log(Foo.__proto__)
 
-const f = new Foo();
+const f = new Foo()
 
 class Foo1 extends Foo {}
 
-console.log(Foo1.__proto__ === Foo); // true
+console.log(Foo1.__proto__ === Foo) // true
 
 // true
-console.log(Foo1[Symbol.hasInstance](f));
+console.log(Foo1[Symbol.hasInstance](f))
 
 /**
  * Symbol.match
@@ -62,33 +63,33 @@ console.log(Foo1[Symbol.hasInstance](f));
 
 class match {
   static [Symbol.match](target) {
-    return [target];
+    return [target]
   }
 }
 // 正则表达式的原型上面有[Stmbol.match]方法 因此是match()的有效参数
-console.log("123".match(match));
+console.log('123'.match(match))
 
 /**
  * Symbol.isConcatSpreadable 是否能用concat来平铺数组 false会将值追加到末尾
  * 数组默认打平后在追加到末尾 类数组追加到末尾
  */
 
-const fooArr = ["arr"];
-console.log(fooArr);
+const fooArr = ['arr']
+console.log(fooArr)
 
-const bar = ["foo"];
-bar[Symbol.isConcatSpreadable] = false;
+const bar = ['foo']
+bar[Symbol.isConcatSpreadable] = false
 
-console.log(bar[Symbol.isConcatSpreadable]);
+console.log(bar[Symbol.isConcatSpreadable])
 
-console.log(fooArr.concat(bar));
+console.log(fooArr.concat(bar))
 
-const set = new Set();
+const set = new Set()
 
-set.add("1");
+set.add('1')
 // 不是类数组对象的对象在 Symbol.isConcatSpreadable 被设置为 true 的情况下将被忽略
-set[Symbol.isConcatSpreadable] = true;
-console.log(fooArr.concat(set));
+set[Symbol.isConcatSpreadable] = true
+console.log(fooArr.concat(set))
 
 /**
  * Symbol.replace
@@ -96,11 +97,11 @@ console.log(fooArr.concat(set));
 
 class replaceClass {
   static [Symbol.replace](target, replaceTarget) {
-    return target.split("foo").join(replaceTarget);
+    return target.split('foo').join(replaceTarget)
   }
 }
 
-console.log("barfooddy".replace(replaceClass, "bzz")); // barbzzddy
+console.log('barfooddy'.replace(replaceClass, 'bzz')) // barbzzddy
 
 /**
  * Symbol.iterator
@@ -110,8 +111,8 @@ console.log("barfooddy".replace(replaceClass, "bzz")); // barbzzddy
 class iteratorClass {
   *[Symbol.iterator]() {}
 }
-const i = new iteratorClass();
+const i = new iteratorClass()
 
-console.log(i[Symbol.iterator]());
+console.log(i[Symbol.iterator]())
 
-export {};
+export {}

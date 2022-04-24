@@ -6,7 +6,6 @@
 import type { Dirent } from 'fs'
 const fs = require('fs')
 const path = require('path')
-// const HtmlWebpackPlugin = require('html-webpack-plugin')
 const isFile = require('./fsTool').isFile
 const isAppointFile = require('./fsTool').isAppointFile
 const getFilesName = require('./fsTool').getFilesName
@@ -20,7 +19,7 @@ const filePath = 'html'
 const htmlTemplateAttribute: templateAttribute[] = []
 export function getEntry(paths: string) {
   fs.readdir(paths, { withFileTypes: true }, (err: Error, files: Dirent[]) => {
-    if (err) throw console.error('reddir')
+    if (err) throw console.error('readdir error', err)
     files.forEach((val: Dirent) => {
       if (!isFile(val.name)) {
         getEntry(path.resolve(paths, val.name))
