@@ -23,6 +23,22 @@ module.exports = {
         test: /\.less$/,
         use: ['style-loader', 'css-loader', 'less-loader'],
       },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 4 * 1024, // 4kb
+          },
+        },
+      },
+      {
+        test: /\.svg$/,
+        use: {
+          loader: 'svg-url-loader',
+          options: {},
+        },
+      },
     ],
   },
   resolve: {

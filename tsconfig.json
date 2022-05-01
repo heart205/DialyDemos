@@ -102,6 +102,7 @@
   },
   "include": [
     "src/demo/**/*.ts",
-    "src/index.ts"
+    "src/index.ts",
+    "src/index.d.ts"
   ]
 }
