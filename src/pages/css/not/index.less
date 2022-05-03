@@ -1,0 +1,15 @@
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #000 ;
+  padding: 10px;
+  font-size: 24px;
+}
+
+// 由于继承的原因 如果直接使用 :not(p) 样式会因为body的继承被覆盖 因此前面需要添加body
+body :not(p) {
+  color: blue;
+}

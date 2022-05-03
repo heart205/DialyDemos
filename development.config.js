@@ -21,7 +21,9 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader'],
+        // postcss-loader 他只能对css代码进行预处理，当然他支持各种插件对功能，但是他也是没有支持 行内注释
+        // demo.less-->less-loader-->(demo.css)-->postcss-loader-->css.loader
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
       },
       {
         test: /\.(png|jpg|gif)$/i,
