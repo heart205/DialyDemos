@@ -25,11 +25,8 @@ function factoryLine(num?: number) {
  * @returns
  */
 export function factoryProgressLine(percent: number, innerHTML: string) {
-  const totalWidth = number * lineWidth
-  const width = percent * totalWidth
+  const width = percent * 100
   const oneLineWidth = 100 / number
-  // num => 100
-  console.log(oneLineWidth)
   const progress = document.createElement('div')
   progress.className = 'flex items-center'
   const label = document.createElement('div')
