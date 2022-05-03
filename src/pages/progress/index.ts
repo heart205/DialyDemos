@@ -2,6 +2,7 @@ import './index.less'
 import { factoryProgress } from './progress'
 import { factoryProgressLine } from './line-progress'
 import { cardFactory } from './card-progress'
+import { cardStepsFactory } from './card-steps'
 const app = document.getElementById('home')
 
 const progress = [
@@ -18,4 +19,5 @@ progress.forEach((val) => {
   app?.appendChild(factoryProgress(percent, val.title))
   app?.appendChild(factoryProgressLine(percent, val.title))
   app?.appendChild(cardFactory(percent, val.title))
+  app?.appendChild(cardStepsFactory(8, 1))
 })
