@@ -10,21 +10,3 @@
  * 拖拽事件 drag dragStart dragEnd
  * 拖放事件(用于可以执行放置的区域) dragEnter dragLeave drop dragover
  */
-
-import { draggle, draggleOperation } from './deaggle'
-const container: HTMLDivElement = document.querySelector(
-  '.contains'
-) as HTMLDivElement
-const elementLi: HTMLCollection = document.getElementsByClassName(
-  'box'
-) as HTMLCollection
-
-for (let i in elementLi) {
-  const dom = new draggle()
-  if (dom && dom.addEvent) dom.addEvent(elementLi[i])
-}
-const draggableOptionDom = new draggleOperation()
-
-if (draggableOptionDom && draggableOptionDom.addEvent) {
-  draggableOptionDom.addEvent(container)
-}

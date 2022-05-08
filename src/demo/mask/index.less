@@ -1,9 +1,11 @@
 // @url:'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png?undefined';
-@url:'https://github-readme-stats.vercel.app/api/top-langs/?username=heart205&layout=compact&theme=buefy&hide_border=true';
+@url: 'https://github-readme-stats.vercel.app/api/top-langs/?username=heart205&layout=compact&theme=buefy&hide_border=true';
+
 * {
   margin: 0;
   padding: 0;
 }
+
 body,
 html {
   width: 100%;
@@ -17,6 +19,7 @@ html {
   display: inline-block;
   position: relative;
   margin: 60px;
+
   & > img {
     cursor: pointer;
     height: 200px;
@@ -26,11 +29,12 @@ html {
 }
 
 .mask {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgb(0 0 0 / 10%);
   // mask: linear-gradient(to right, #00000073 0%, #00000073 100%);
   mask: url(@url);
   // -webkit-mask: linear-gradient(to right, transparent 10%, #ccc 100%);
-  -webkit-mask:  url(@url);
+  // mask:  url(@url);
+
   .mask-img {
     object-fit: contain;
   }

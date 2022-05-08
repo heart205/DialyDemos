@@ -27,10 +27,18 @@ setInterval(() => {
     secondUnit.setAttribute('style', `transform: rotate(${new Date().getSeconds() * 6 + 90}deg)`)
   }
   if (minuteUnit) {
-    minuteUnit.setAttribute('style', `transform: rotate(${new Date().getMinutes() * 6 + new Date().getSeconds() / 10 + 90}deg)`)
+    minuteUnit.setAttribute(
+      'style',
+      `transform: rotate(${new Date().getMinutes() * 6 + new Date().getSeconds() / 10 + 90}deg)`
+    )
   }
 
   if (hourUnit) {
-    hourUnit.setAttribute('style',`transform: rotate(${new Date().getHours() * 30 + new Date().getMinutes() * 0.5 + new Date().getSeconds() / 120 + 90}deg)`)
+    hourUnit.setAttribute(
+      'style',
+      `transform: rotate(${
+        new Date().getHours() * 30 + new Date().getMinutes() * 0.5 + new Date().getSeconds() / 120 + 90
+      }deg)`
+    )
   }
 }, 1000)

@@ -7,7 +7,7 @@
 type timerType<T> = T extends (...args: any[]) => infer R ? R : null
 function debounce(func: (...args: any) => void, delay: number) {
   let timer: timerType<typeof setTimeout | null> = null
-  return function () {
+  return function (this: unknown) {
     if (timer) clearTimeout(timer)
     timer = setTimeout(() => {
       func.call(this, arguments)
