@@ -1,8 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
-const entry = require('./src/lib/fs-loader').entry
-const htmlTemplate = require('./src/lib/fs-loader').htmlTemplateAttribute
+const entry = require('./src/lib/fsloader').entry
+const htmlTemplate = require('./src/lib/fsloader').htmlTemplateAttribute
 module.exports = {
   mode: 'development',
   entry: {
@@ -21,7 +21,9 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        // postcss-loader 他只能对css代码进行预处理，当然他支持各种插件对功能，但是他也是没有支持 行内注释
+        // demo.less-->less-loader-->(demo.css)-->postcss-loader-->css.loader
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
       },
       {
         test: /\.(png|jpg|gif)$/i,
@@ -64,7 +66,18 @@ module.exports = {
     port: 3002,
     host: '0.0.0.0',
     client: {
-      logging: 'info',
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
     },
+  },
+  // https://webpack.docschina.org/configuration/stats/
+  stats: {
+    colors: true,
+    modules: false,
+    children: false,
+    chunks: false,
+    chunkModules: false,
   },
 }

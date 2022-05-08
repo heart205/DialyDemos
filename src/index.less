@@ -1,13 +1,12 @@
+@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+
+@import 'tailwindcss/utilities';
+
 #app {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  div {
-    width: 30%;
-    padding: 12px 0;
-    margin: 10px;
-    text-align: center;
-    box-shadow: 0 0 12px 0 rgba(0,0,0,.1);
+  & > div {
+    width: 20%;
     cursor: pointer;
   }
 }

@@ -1,0 +1,58 @@
+@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+
+@import 'tailwindcss/utilities';
+
+@red-500: rgba(239, 68, 68, var(--tw-bg-opacity));
+// line-height 为数值 根据当前的字体大小来的
+.card-steps-first {
+  &::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 20px;
+    position: absolute;
+    // 三角形长度为10px
+    right: -10px;
+    top: 0;
+    background-color: inherit;
+    clip-path: polygon(0% 0%, 60% 0%, 100% 50%, 60% 100%, 0% 100%);
+  }
+}
+
+.card-steps-active {
+  span {
+    color: @red-500;
+  }
+}
+
+.line-height-3 {
+  line-height: 3;
+}
+
+.text-slate-400 {
+  color: rgb(148 163 184);
+}
+
+.text-slate-100 {
+  color: rgb(241 245 249);
+}
+
+.text-slate-200 {
+  color: rgb(226 232 240);
+}
+
+.card-steps {
+  & > div {
+    & > span {
+      transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+
+      &:hover {
+        color: #1890ff;
+      }
+    }
+
+    cursor: pointer;
+  }
+}

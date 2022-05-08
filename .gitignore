@@ -7,3 +7,7 @@
 src/demo/node/config/
 
 .zip
+
+.package-lock.json
+
+coverage
