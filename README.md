@@ -1,1 +1,1 @@
-# ts-template-browser
+# ts-browser-demo
