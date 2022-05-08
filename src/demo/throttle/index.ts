@@ -35,7 +35,7 @@ function throttleDemo1(func: (...args: any) => void, delay: number) {
 type timOut<T> = T extends (...args: any[]) => infer r ? r : null
 function throttleDemo2(func: (...args: any) => void, delay: number) {
   let timer: timOut<typeof setTimeout | null> = null
-  return function () {
+  return function (this: unknown) {
     const arg = [...arguments]
     if (!timer) {
       func.apply(this, arg)
