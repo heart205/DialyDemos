@@ -4,7 +4,6 @@
 
 @import 'tailwindcss/utilities';
 
-
 @red-500: rgba(239, 68, 68, var(--tw-bg-opacity));
 // line-height 为数值 根据当前的字体大小来的
 .card-steps-first {
@@ -21,6 +20,7 @@
     clip-path: polygon(0% 0%, 60% 0%, 100% 50%, 60% 100%, 0% 100%);
   }
 }
+
 .card-steps-active {
   span {
     color: @red-500;
@@ -42,14 +42,17 @@
 .text-slate-200 {
   color: rgb(226 232 240);
 }
+
 .card-steps {
   & > div {
     & > span {
       transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+
       &:hover {
         color: #1890ff;
       }
     }
+
     cursor: pointer;
   }
 }
