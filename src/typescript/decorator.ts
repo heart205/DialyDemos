@@ -11,7 +11,7 @@ interface person {
   names: string
 }
 
-function setProps(target: Function) {
+function setProps(target: () => void) {
   target.prototype.names = 'default'
 }
 /**
@@ -20,14 +20,14 @@ function setProps(target: Function) {
  */
 @setProps
 class Person implements person {
-  names: string = ''
+  names = ''
 }
 
 console.log(new Person().names)
 
 // TOOD: 装饰器工厂
 function setProp(age: number) {
-  return function (target: Function) {
+  return function (target: () => void) {
     target.prototype.age = age //值设置在了prototype中
   }
 }
@@ -69,11 +69,7 @@ function logProperty(target: unknown, protoKey: string) {
 }
 
 // 打印方法名
-function methodLog(
-  target: any,
-  protoKey: string,
-  descriptor: PropertyDescriptor
-) {
+function methodLog(target: any, protoKey: string, descriptor: PropertyDescriptor) {
   console.log('methodLog', target) //  传入的是 new D().__proto__ 也是D.prototype
   console.log('methodLog', descriptor) //  defineProperty定义出来的四个属性
   console.log('methodLog', protoKey) // nameMethod的名字
@@ -118,7 +114,7 @@ function setAclass(str: string) {
 }
 
 /**
- * 
+ *
  * @param target 装饰静态成员时是类的构造函数
  * @param key 成员的名字
  */
@@ -135,18 +131,12 @@ function property(target: unknown, key: string) {
  * 方法装饰器返回一个值，那么会用这个值作为方法的属性描述符对象
  * 访问器装饰器也是和方法装饰器一样操作 不允许同时装饰一个成员的 get 和 set 访问器
  */
-function methodsLog(
-  target: any,
-  protoKey: string,
-  descriptor: PropertyDescriptor
-) {
+function methodsLog(target: any, protoKey: string, descriptor: PropertyDescriptor) {
   console.log('方法装饰器')
 }
 
-
-
 /**
- * 
+ *
  * @param target 当前对象的原型(obj.__proto__)
  * @param propertyKey 参数的名
  * @param index 参数数组中的位置 从0开始计时
@@ -164,10 +154,10 @@ class A {
   @property
   names: string = ''
   @methodsLog
-  as(@paramLog st: string) { }
+  as(@paramLog st: string) {}
 }
 
-function classDecorator<T extends { new(...args: any[]): {} }>(target: T) {
+function classDecorator<T extends { new (...args: any[]): {} }>(target: T) {
   return class extends target {
     newPropery = '123'
   }
@@ -181,11 +171,11 @@ function classDecorators(target: any): any {
 @classDecorators
 class Geeter {
   property = 'property'
-  constructor(public hello: string) { }
+  constructor(public hello: string) {}
 }
 
 console.log(new Geeter('names'))
 
 // export {}
 
-export { }
+export {}

@@ -73,14 +73,12 @@ arr.filter((val): val is string => {
 // 当进行收窄的时候，如果你把所有可能的类型都穷尽了，TypeScript 会使用一个 never 类型来表示一个不可能存在的状态
 // never 类型可以赋值给任何类型，然而，没有类型可以赋值给 never （除了 never 自身）。这就意味着你可以在 switch 语句中使用 never 来做一个穷尽检查。
 
-type n<T> = ReturnType<
-  T extends (foo: string) => string | number ? (foo: string) => number : never
->
+type n<T> = ReturnType<T extends (foo: string) => string | number ? (foo: string) => number : never>
 type fc = (foo: string) => void
 type sfc = n<fc>
 let a: sfc // never
 // 构造函数的签名
- // {new (...args: any[]): infer S } //这是一种构造签名
+// {new (...args: any[]): infer S } //这是一种构造签名
 type fn<T> = T extends { new (...args: any[]): infer S } ? S : never
 
 type func = {
@@ -88,6 +86,6 @@ type func = {
 }
 type a = fn<func>
 
-const map = new Map();
+const map = new Map()
 
 export {}

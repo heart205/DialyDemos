@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 能够匹配元素自身或者是后代的focus伪类*/
+      /*@see:https://developer.mozilla.org/zh-CN/docs/Web/CSS/:focus-within*/
+      .btn:focus-within {
+        border: 1px dashed #000;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    /* 能够匹配元素自身或者是后代的focus伪类*/
-    /*@see:https://developer.mozilla.org/zh-CN/docs/Web/CSS/:focus-within*/
-    .btn:focus-within {
-      border: 1px dashed #000;
-    }
+      /* 选择器可以有效地根据用户的输入方式(鼠标 vs 键盘)展示不同形式的焦点。*/
+      /* https://developer.mozilla.org/zh-CN/docs/Web/CSS/:focus-visible*/
+      .btn:focus-visible {
+        border: 4px dashed #000;
+      }
+    </style>
+  </head>
 
-    /* 选择器可以有效地根据用户的输入方式(鼠标 vs 键盘)展示不同形式的焦点。*/
-    /* https://developer.mozilla.org/zh-CN/docs/Web/CSS/:focus-visible*/
-    .btn:focus-visible {
-      border: 4px dashed #000;
-    }
-  </style>
-</head>
-
-<body>
-  <button class="btn">button</button>
-</body>
-
+  <body>
+    <button class="btn">button</button>
+  </body>
 </html>

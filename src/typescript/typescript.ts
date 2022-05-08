@@ -25,22 +25,19 @@ function live(x?: string | null) {
 interface Parse {
   warp: string
 }
-type str<t extends string> = t extends `${infer key}`
-  ? { [K in `${key}_${number}`]: HTMLElement }
-  : never
+type str<t extends string> = t extends `${infer key}` ? { [K in `${key}_${number}`]: HTMLElement } : never
 
 type nums<T extends number> = Parse & str<'quque'>
 
-type ParseQueryString<T extends string> =
-  T extends `${infer key}=${infer value}&${infer r}`
-    ? {
-        [K in key]: value
-      } & ParseQueryString<r>
-    : T extends `${infer key}=${infer value}`
-    ? {
-        [K in key]: value
-      }
-    : {}
+type ParseQueryString<T extends string> = T extends `${infer key}=${infer value}&${infer r}`
+  ? {
+      [K in key]: value
+    } & ParseQueryString<r>
+  : T extends `${infer key}=${infer value}`
+  ? {
+      [K in key]: value
+    }
+  : {}
 // TODO: 方法在 typescript中的types_n.ts 中
 type param = ParseQueryString<'name=1&age=2'>
 

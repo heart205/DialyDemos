@@ -36,10 +36,7 @@ function formatCommandLine<T extends format>(command: T): T | null {
  * 交叉类型
  */
 
-function extend<T extends object, U extends object>(
-  first: T,
-  second: U
-): T & U {
+function extend<T extends object, U extends object>(first: T, second: U): T & U {
   const result = <T & U>{}
   for (let id in first) {
     ;(<T>result)[id] = first[id]
@@ -140,11 +137,7 @@ interface onePerson {
   age: number
 }
 
-type PromiseType<P> = P extends Promise<infer value>
-  ? value
-  : P extends onePerson
-  ? onePerson
-  : never
+type PromiseType<P> = P extends Promise<infer value> ? value : P extends onePerson ? onePerson : never
 
 // 判断setTimeout的类型
 type ps = ReturnType<typeof setTimeout>

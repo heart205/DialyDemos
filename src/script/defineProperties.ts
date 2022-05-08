@@ -6,7 +6,7 @@
 
 // Object.defineProperties() 方法直接在一个对象上定义新的属性或修改现有属性，并返回该对象
 
-const obj = {};
+const obj = {}
 
 Object.defineProperties(obj, {
   prop: {
@@ -19,8 +19,8 @@ Object.defineProperties(obj, {
     writable: true,
     enumerable: true,
   },
-});
+})
 
-console.log(obj);
+console.log(obj)
 
-console.log(Object.getOwnPropertyNames(obj));
+console.log(Object.getOwnPropertyNames(obj))

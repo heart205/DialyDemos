@@ -9,4 +9,3 @@ namespace Utity {
     console.log('123')
   }
 }
-

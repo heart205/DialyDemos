@@ -15,31 +15,30 @@
 
 class A {
   static toString() {
-    return "A的toString";
+    return 'A的toString'
   }
 }
 
 class B extends A {
   static toString() {
-    return "B的toString()";
+    return 'B的toString()'
   }
 }
 
 // A.__proto__ => Function.prototype
 A.__proto__.toString = function () {
-  return "Object的toString()";
-};
+  return 'Object的toString()'
+}
 
 // A.__proto__.__proto__ = Object.prototype
 A.__proto__.__proto__.toString = function () {
-  return "Function的toString()";
-};
+  return 'Function的toString()'
+}
 
-console.log(Function.__proto__.toString());
+console.log(Function.__proto__.toString())
 
-console.log(Function.toString());
+console.log(Function.toString())
 
-console.log(B.toString());
+console.log(B.toString())
 
-export {};
-
+export {}
