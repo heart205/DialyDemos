@@ -13,7 +13,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function throttleDemo1(func: (...args: any) => void, delay: number) {
   let timer = 0
-  return function () {
+  return function (this: unknown) {
     const now: number = new Date().getTime()
     // 在delay时间内不会出发第二次
     const arg = [...arguments]

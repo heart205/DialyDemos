@@ -3,7 +3,7 @@
  * @description Canvas给图片添加水印
  * @Date 2022-02-16
  */
-import { trimRegExp1 } from '../../lib/tool'
+import { trimRegExp1 } from '../../../lib/tool'
 // 用canvas先添加图片 然后 获取文字 添加水印
 
 const canvas: HTMLCanvasElement | null = document && document.querySelector('#canvas')

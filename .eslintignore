@@ -1,3 +1,5 @@
 *.d.ts
 
-/src/typescript/**/*
+/typescript/**/*
+
+/script/

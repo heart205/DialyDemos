@@ -9,6 +9,7 @@ function createDivElement(innerHTML: string) {
 
 function addBoxShadow(element: HTMLElement) {
   element.style.boxShadow = '0 0 3px rgba(0,0,0,.2)'
+  element.className = 'm-12 p-3'
 }
 
 function addEventListener(element: HTMLElement, eventName: string, handler: (event: Event) => void) {
