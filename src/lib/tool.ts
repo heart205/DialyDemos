@@ -13,7 +13,7 @@ export function trimRegExp1(str: string) {
  * @param str
  * @returns
  */
-export function preZeronDate(str: string) {
+export function preZeroDate(str: string) {
   const reg = /^(?=\d$)/
   return str.replace(reg, '0')
 }
@@ -24,6 +24,6 @@ export function preZeronDate(str: string) {
  * @param target
  * @returns
  */
-export function preZeronDateReplace(str: string, target: number) {
+export function preZeroDateReplace(str: string, target: number) {
   return str.padStart(target, '0')
 }

@@ -1,11 +1,11 @@
-import { preZeronDateReplace } from '../lib/tool'
+import { preZeroDateReplace } from '../lib/tool'
 const isFile = require('../lib/fsTool').isFile
 const isAppointFile = require('../lib/fsTool').isAppointFile
-describe('preZeronDateReplace result 01', () => {
+describe('preZeroDateReplace result 01', () => {
   it('test', () => {
     const month = new Date().getMonth() + 1
 
-    expect(preZeronDateReplace(new Date().getMonth() + 1 + '', 2)).toBe(month < 10 ? '0' + month : month + '')
+    expect(preZeroDateReplace(new Date().getMonth() + 1 + '', 2)).toBe(month < 10 ? '0' + month : month + '')
   })
 })
 
